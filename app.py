@@ -69,7 +69,7 @@ async def main():
 
     client = chromadb.PersistentClient(CHROMA_DATA_PATH)
     huggingface_embeddings = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/all-MiniLM-L6-v2",
+        model_name="allenai/scibert_scivocab_uncased",
         model_kwargs={"device": "cpu"},
     )
 
@@ -100,4 +100,8 @@ async def main(message: str):
 
     retriever = cl.user_session.get("retriever")
     docs = retriever.get_relevant_documents(message.content)
+    titles = [docs[i].metadata["title"] for i in range(3)]
+    response = ("I recommend to you the following 3 papers similar to your input message:\n\n\n1- {}\n\n2- {}\n\n3- {}\n\n").format(titles[0], titles[1], titles[2])
+    msg = cl.Message(content=response)
+    await msg.send()
   
