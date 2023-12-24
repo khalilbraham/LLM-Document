@@ -24,8 +24,8 @@ CHAINLIT_API_KEY = os.getenv("CHAINLIT_API_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 # Define paths and collection name
-CHROMA_DATA_PATH = r"./embeddings_database"  # Use raw string for Windows path
-COLLECTION_NAME = "research_papers"
+CHROMA_DATA_PATH = r"./embeddings_database" 
+COLLECTION_NAME = "LLM-Test-Instadeep"
 
 # Initialize the language model
 llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo-16k")
