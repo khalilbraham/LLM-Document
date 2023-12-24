@@ -21,11 +21,11 @@ The choice of the allenai/scibert_scivocab_uncased model for scientific paper em
 The utilization of GPT-3.5 for summarization tasks is based on its state-of-the-art capabilities in understanding and generating human-like text. It excels in condensing and summarizing lengthy documents effectively, which aligns with the need to provide paper summaries based on user input.
 
 ## Implementation Details
-The application initializes by setting up the necessary environment variables and components, including loading environment variables and defining paths and collection names for data storage.<br>
-Summarization of uploaded PDFs is performed using PyPDF2 to extract text content, followed by text splitting and summarization through a chain built with langchain's tools.<br>
-Authentication logic for users is implemented for access control.<br>
-Upon uploading a PDF, the application processes it, generates a summary using GPT-3.5, and displays it to the user.<br>
-Recommendations of relevant papers based on user input are made utilizing the vector database created using Chroma.<br>
+* The application initializes by setting up the necessary environment variables and components, including loading environment variables and defining paths and collection names for data storage.<br>
+* Summarization of uploaded PDFs is performed using PyPDF2 to extract text content, followed by text splitting and summarization through a chain built with langchain's tools.<br>
+* Authentication logic for users is implemented for access control.<br>
+* Upon uploading a PDF, the application processes it, generates a summary using GPT-3.5, and displays it to the user.<br>
+* Recommendations of relevant papers based on user input are made utilizing the vector database created using Chroma.<br>
 
 ## Evaluation Pipeline
 An evaluation pipeline for assessing the quality and accuracy of the output could be added by incorporating metrics such as precision, recall, or similarity scores between recommended papers and user-inputted paragraphs.
