@@ -1,0 +1,10 @@
+PyPDF2
+tqdm
+python-dotenv
+langchain
+sentence-transformers
+chromadb
+chainlit
+openai
+rouge-score
+bert-score
