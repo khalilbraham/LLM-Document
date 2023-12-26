@@ -26,19 +26,23 @@ DATA_DIR = r"./data"
 COLLECTION_NAME = "LLM-Test-Instadeep-RAG"
 EMBED_MODEL = "allenai/scibert_scivocab_uncased"
 
-
+# Load the embedding model
 EMBED_FUNCTION = embedding_functions.SentenceTransformerEmbeddingFunction(
      model_name=EMBED_MODEL
  )
 
+
+# Load the vector database
 client = chromadb.PersistentClient(path = CHROMA_DATA_PATH)
 collection = client.get_collection(name=COLLECTION_NAME, embedding_function=EMBED_FUNCTION)
+
 
 huggingface_embeddings = HuggingFaceEmbeddings(
                 model_name="allenai/scibert_scivocab_uncased",
                 model_kwargs={"device": "cpu"},
             )
 
+# Load the langchain wrapper
 langchain_chroma = Chroma(
     client=client,
     collection_name=COLLECTION_NAME,

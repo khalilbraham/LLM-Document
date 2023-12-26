@@ -39,14 +39,17 @@ def summarize(files):
     with BytesIO(uploaded_file.content) as pdf_stream:  # Use context manager
         pdf = PyPDF2.PdfReader(pdf_stream)
 
+        # Read the pdf file
         pdf_text = ""
         for page in pdf.pages:
             pdf_text += page.extract_text()
 
+        # Split the file into chunks
         text_splitter = RecursiveCharacterTextSplitter(chunk_size=3500, chunk_overlap=30)
         texts = text_splitter.split_text(pdf_text)
         docs = [Document(page_content=t) for t in texts]
 
+        # Summarize the file
         chain = load_summarize_chain(llm, chain_type="map_reduce", verbose=False)
         summary = chain.run(docs)
         return summary
@@ -67,12 +70,14 @@ def auth_callback(username: str, password: str) -> Optional[cl.AppUser]:
 async def main():
     """Handles initial chat setup and PDF summarization."""
 
+    # Call the vectorDB and the embeddings function
     client = chromadb.PersistentClient(CHROMA_DATA_PATH)
     huggingface_embeddings = HuggingFaceEmbeddings(
         model_name="allenai/scibert_scivocab_uncased",
         model_kwargs={"device": "cpu"},
     )
 
+    # Use the ChromaDB langchain wrapper
     langchain_chroma = Chroma(
         client=client,
         collection_name=COLLECTION_NAME,
@@ -80,6 +85,7 @@ async def main():
     )
     retriever = langchain_chroma.as_retriever(search_kwargs={"k": 3}, search_type="similarity")
     cl.user_session.set("retriever", retriever)
+
 
     files = None
     while files is None:
@@ -89,6 +95,7 @@ async def main():
             max_size_mb=10,
         ).send()
 
+    # Process and summarize the paper
     await cl.Message(content=f"Processing paper...").send()
     summary = await cl.make_async(summarize)(files)
     await cl.Message(content=summary).send()
