@@ -13,14 +13,20 @@ Ensure you have Python installed on your machine.
 1. Open a terminal or command prompt.
 2. Navigate to the project directory.
 3. Run the following command to install the required packages from 'requirements.txt':
-   ```pip install -r requirements.txt```
+```bash
+pip install -r requirements.txt
+```
    
 ### Running the Application
 To run the main app, use:
-```chainlit run app.py```
+```bash
+chainlit run app.py
+```
 
 To run the QA RAG retriever application, use:
-```chainlit run app_qa.py```
+```bash
+chainlit run app_qa.py
+```
 
 ## Implementation Overview
 The implemented solution utilizes various Python libraries and techniques to achieve the specified tasks:
