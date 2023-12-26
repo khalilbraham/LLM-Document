@@ -4,6 +4,10 @@ LLM - Technical Test for the Instadeep internship
 ## Objective
 This technical test involves designing an application to assist a researcher in updating their paper based on the latest advancements in the field. The application utilizes Natural Language Processing techniques to recommend relevant papers to augment a set of input paragraphs.
 
+I decided to develop two applications, one for the summarization and paper recommendation tasks and another for a question/answer task based on our vector database built from our papers.
+
+### The main files are "app.py" and "app_qa.py" for the app execution and the jupyter notebook for the steps, details, choices and evaluation. 
+
 ## How to Run
 
 ### Prerequisites
@@ -16,17 +20,23 @@ Ensure you have Python installed on your machine.
 ```bash
 pip install -r requirements.txt
 ```
-   
+4. Once on the application, use "admin" as a username and a password.  
+![Auth](./report/auth.png)
+
+
 ### Running the Application
-To run the main app, use:
+To run the main app for the paper summarization and recommendation, use:
 ```bash
 chainlit run app.py
 ```
 
-To run the QA RAG retriever application, use:
+![Summ](./report/summ.png)
+
+To run the Question Answering RAG retriever application, use:
 ```bash
 chainlit run app_qa.py
 ```
+![QA APP](./report/qa.png)
 
 ## Implementation Overview
 The implemented solution utilizes various Python libraries and techniques to achieve the specified tasks:
